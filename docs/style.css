@@ -1,0 +1,66 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  background-color: #000;
+  font-family: 'Courier New', Courier, monospace;
+  color: #00ff00;
+}
+
+.terminal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+}
+
+.terminal {
+  padding: 2rem;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px #00ff00;
+  min-width: 300px;
+  text-align: left;
+}
+
+h1 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cmd-line {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.cmd-symbol {
+  color: #00ff00;
+  margin-right: 0.5rem;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+footer {
+  margin-top: 20px;
+  color: #555;
+  font-size: 14px;
+}
