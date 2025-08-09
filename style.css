@@ -116,3 +116,69 @@ footer {
   font-size: 0.9rem;
   text-align: center;
 }
+
+
+    /* Minimal local styles — won't override your primary CSS */
+    .project-wrap { max-width: 1100px; margin: 32px auto; padding: 20px; }
+    header.project-header { margin-bottom: 26px; }
+    header.project-header h1 { margin: 0 0 6px 0; font-size: 1.8rem; }
+    .subtitle { color: #666; margin: 0 0 12px 0; font-size: 1.02rem; }
+    .hero { width:100%; max-height:320px; object-fit:cover; border-radius:8px; margin:12px 0 20px 0; display:block; }
+
+    section.project-section { margin-bottom: 26px; padding: 18px 14px; border-radius: 8px; background: rgba(0,0,0,0.02); }
+    section.project-section h2 { margin-top: 0; color: #6df7f9; font-size: 1.15rem; }
+    .kbd { font-family: monospace; background:#000000; padding:2px 6px; border-radius:4px; }
+
+    /* Command blocks and copy button */
+    .cmd {
+      position: relative;
+      background: #0f1720;
+      color: #e6eef6;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      line-height: 1.5;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    }
+    .cmd pre { margin: 0; white-space: pre-wrap; word-break: break-word; }
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background:#161b1a;
+      color:rgb(86, 233, 199);
+      border:0;
+      padding:6px 9px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:0.86rem;
+    }
+    .copy-btn:active { transform: translateY(1px); }
+
+    /* small utility */
+    .muted { color:#666; font-size:0.95rem; }
+    ul.clean { padding-left: 1.1rem; margin-top:6px }
+    .two-col { display:flex; gap:18px; flex-wrap:wrap; }
+    .col { flex:1 1 320px; min-width: 280px; }
+
+    /* code list style for useful commands */
+    .cmd-list { background: #000000; border: 1px solid #eee; padding: 12px; border-radius: 8px; }
+    .note { background:#fffbe6; padding:10px; border-radius:6px; border:1px solid #f0e1a8; color:#765b00; }
+
+    @media (max-width:640px){
+      .project-wrap { padding: 12px; }
+      .copy-btn { padding:5px 7px; font-size:0.78rem; }
+    }
+
+       .note {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 10px;
+      border-left: 5px solid #ffecb5;
+      margin-top: 10px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }

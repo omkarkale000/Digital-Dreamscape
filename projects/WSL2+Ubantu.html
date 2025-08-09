@@ -1,0 +1,288 @@
+<!-- File: /projects/wsl2-ubuntu-install.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💻 WSL2 + Ubuntu: Install Linux on Windows Without VirtualBox</title>
+  <link rel="stylesheet" href="../style.css" />
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="nav-buttons">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="../about.html">About Me</a>
+  </nav>
+
+  <main class="project-wrap">
+
+    <!-- Header -->
+    <header class="project-header">
+      <h1>💻 WSL2 + Ubuntu: Install Linux on Windows Without VirtualBox</h1>
+      <p class="subtitle">🚀 Want to run Ubuntu directly on Windows? Here’s your VirtualBox-free alternative — fast, lightweight, and great for developers and DevOps learners.</p>
+      <!-- Hero image placeholder (replace src with your screenshot) -->
+      <img class="hero" src="../images/wsl2-hero.png" alt="WSL2 hero screenshot (replace me)" />
+    </header>
+
+    <!-- Description -->
+    <section class="project-section" id="overview">
+      <h2>📌 What is WSL?</h2>
+      <p>
+        <strong>Windows Subsystem for Linux (WSL)</strong> lets you run a GNU/Linux environment directly on Windows — no dual-boot, no heavy VM. WSL2 includes a real Linux kernel and provides better compatibility and performance than WSL1.
+      </p>
+    </section>
+
+    <!-- Advantages & Disadvantages -->
+    <section class="project-section two-col" id="pros-cons">
+      <div class="col">
+        <h2>✅ Advantages</h2>
+        <ul class="clean">
+          <li>⚡ Faster and more lightweight than most full VMs</li>
+          <li>🛠 Full Linux kernel support in WSL2</li>
+          <li>📦 Run Linux tools and Windows apps side-by-side</li>
+          <li>🗂 Easy file sharing between Windows and Linux</li>
+          <li>🎯 Great for development, scripting, and running Ansible</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2>❌ Disadvantages (and quick workarounds)</h2>
+        <ul class="clean">
+          <li>🌐 <strong>Dynamic IP/hostname</strong> — add `/etc/hosts` entries or use dynamic inventory (we include tips below).</li>
+          <li>🔧 <strong>Kernel updates</strong> may be required — run <span class="kbd">wsl --update</span> (covered in setup).</li>
+          <li>🖥 <strong>No GUI by default</strong> — use WSLg for GUI apps or use a full Ubuntu desktop when needed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Compatibility -->
+    <section class="project-section" id="compatibility">
+      <h2>🖥 System Compatibility</h2>
+      <p class="muted"><strong>Minimum:</strong> Ryzen 3 / Intel i3, 4 GB RAM</p>
+      <p class="muted"><strong>Recommended:</strong> Ryzen 3 / Intel i3, 8 GB RAM</p>
+    </section>
+
+    <!-- Installation steps -->
+    <section class="project-section" id="install-wsl">
+      <h2>⚙️ Part 1 — Install WSL2</h2>
+      <p class="muted">There are multiple ways to install WSL2. Choose the one you prefer.</p>
+
+      <h3>Option A — Quick (Command line)</h3>
+      <p>Runs everything automatically (requires Windows with WSL support):</p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd1')">Copy</button>
+        <pre><code id="cmd1">wsl --install</code></pre>
+      </div>
+
+      <h3>Option B — Microsoft Store (GUI)</h3>
+      <p>Open the Microsoft Store, search <em>Windows Subsystem for Linux</em> or the distro you want (e.g., Ubuntu) and install via the Store. This is the easiest GUI route.</p>
+      <p class="muted">SS/GIF placeholder: <em>how to install from Microsoft Store</em></p>
+      <img src="../images/wsl-store.png" alt="Microsoft Store WSL screenshot" style="max-width:100%; border-radius:8px; margin-top:8px;" />
+
+      <h3>Option C — Manual (advanced)</h3>
+      <p>If you prefer to enable features manually (PowerShell, Admin):</p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd2')">Copy</button>
+        <pre><code id="cmd2">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+# Then restart your PC</code></pre>
+      </div>
+    </section>
+
+    <!-- Kernel update -->
+    <section class="project-section" id="kernel-update">
+      <h2>🔧 Part 2 — Kernel Update</h2>
+      <p>If the installer prompts you to update the WSL2 kernel (error like <code>0x800701bc</code>), update with:</p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd3')">Copy</button>
+        <pre><code id="cmd3">wsl --update</code></pre>
+      </div>
+      <p class="muted">If the automatic update still complains, download the official kernel package from Microsoft: <a href="https://aka.ms/wsl2kernel" target="_blank" rel="noopener">aka.ms/wsl2kernel</a> — run the MSI, reboot, then continue.</p>
+      <p class="note">Note: the GitHub WSL2 kernel repo has build instructions for advanced users — you don't need to compile anything for normal installs.</p>
+      <img src="../images/wsl-kernel-update.png" alt="WSL Kernel update screenshot" style="max-width:100%; border-radius:8px; margin-top:8px;" />
+    </section>
+
+    <!-- GUI Config mention -->
+    <section class="project-section" id="wsl-config">
+      <h2>🛠 Part 3 — Configure WSL2 (GUI)</h2>
+      <p>We recommend configuring WSL2 resources via the GUI (Windows Settings or WSL app). You can set memory, CPU, and swap via <code>~/.wslconfig</code> or the GUI. Add your screenshots/GIF in the placeholder below.</p>
+      <p class="muted">SS/GIF placeholder: <em>open WSL settings → resources → change CPU / memory / swap</em></p>
+      <img src="../images/wsl-config-gui.gif" alt="WSL config GIF (replace)" style="max-width:100%; border-radius:8px; margin-top:8px;" />
+    </section>
+
+    <!-- Install Ubuntu -->
+    <section class="project-section" id="install-ubuntu">
+      <h2>🐧 Part 4 — Install Ubuntu (or another distro)</h2>
+      <p>WSL2 supports many distros. Popular choices:</p>
+      <ul class="clean">
+        <li>Ubuntu</li>
+        <li>Debian</li>
+        <li>Kali Linux</li>
+        <li>openSUSE</li>
+        <li>AlmaLinux / Oracle Linux</li>
+      </ul>
+
+      <p><strong>Install Ubuntu 22.04:</strong></p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd4')">Copy</button>
+        <pre><code id="cmd4">wsl --install -d Ubuntu-22.04</code></pre>
+      </div>
+
+      <p class="muted">After install, launch Ubuntu from the Start Menu, create your UNIX username & password and run the initial updates below.</p>
+      <img src="../images/ubuntu-first-launch.png" alt="Ubuntu first launch in WSL" style="max-width:100%; border-radius:8px; margin-top:8px;" />
+    </section>
+
+    <!-- Ubuntu initial setup -->
+    <section class="project-section" id="ubuntu-setup">
+      <h2>🧰 Part 5 — Initial Ubuntu setup</h2>
+      <p>Inside your new Ubuntu shell, run:</p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd5')">Copy</button>
+        <pre><code id="cmd5">sudo apt update && sudo apt upgrade -y</code></pre>
+      </div>
+
+      <p>Install basic tools (optional):</p>
+      <div class="cmd" data-copy>
+        <button class="copy-btn" onclick="copyCommand('cmd6')">Copy</button>
+        <pre><code id="cmd6">sudo apt install -y curl wget git nano build-essential</code></pre>
+      </div>
+    </section>
+
+    <section>
+    <h2>1️⃣ Change the Hostname</h2>
+    <p>By default, WSL2 assigns a generic hostname. You can personalize it:</p>
+    <div class="cmd" data-copy>
+      <button class="copy-btn" onclick="copyCommand('cmd7')">Copy</button>
+      <code id="cmd7">sudo hostnamectl set-hostname WSL2UB22OMK</code>
+    </div>
+    <p>Verify the change:</p>
+    <div class="cmd" data-copy>
+      <button class="copy-btn" onclick="copyCommand('cmd8')">Copy</button>
+      <code id="cmd8">hostnamectl</code>
+    </div>
+  </section>
+
+   <section>
+    <h2>2️⃣ Create a Root User</h2>
+    <p>You can create a dedicated root user for administrative tasks:</p>
+    <div class="cmd" data-copy>
+      <button class="copy-btn" onclick="copyCommand('cmd9')">Copy</button>
+      <code id="cmd9">sudo adduser rootuser</code>
+    </div>
+    <p>Grant root privileges:</p>
+    <div class="cmd" data-copy>
+      <button class="copy-btn" onclick="copyCommand('cmd10')">Copy</button>
+      <code id="cmd10">sudo usermod -aG sudo rootuser</code>
+    </div>
+    <div class="note">
+      <strong>Note:</strong> Choose a strong password and store it securely. You will not be able to recover it if forgotten.
+    </div>
+  </section>
+  
+    <!-- Tips and networking -->
+    <section class="project-section" id="tips">
+      <h2>💡 Tips & Networking</h2>
+      <div class="two-col">
+        <div class="col">
+          <h3>Check host (Windows) network</h3>
+          <div class="cmd" data-copy>
+            <button class="copy-btn" onclick="copyCommand('cmd11')">Copy</button>
+            <pre><code id="cmd11">ipconfig /all</code></pre>
+          </div>
+        </div>
+        <div class="col">
+          <h3>Check Ubuntu network</h3>
+          <div class="cmd" data-copy>
+            <button class="copy-btn" onclick="copyCommand('cmd12')">Copy</button>
+            <pre><code id="cmd12">ip addr
+ping -c 3 google.com</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <p class="muted">If you need stable hostnames for Ansible testing, add the current WSL IP and a friendly name to <code>/etc/hosts</code> (on the control machine or targets) — or use a dynamic inventory script to regenerate the inventory at runtime.</p>
+    </section>
+
+    <!-- Useful commands -->
+    <section class="project-section" id="useful-cmds">
+      <h2>📋 Useful Commands</h2>
+
+      <div class="cmd-list">
+        <div class="cmd" data-copy>
+          <strong>Quick reference</strong>
+          <button class="copy-btn" onclick="copyCommand('cmd13')">Copy list</button>
+        
+
+        <pre style="margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; white-space:pre-wrap;">
+          <code id="cmd12">
+wsl --list --verbose            # list installed distributions
+wsl --set-version Ubuntu 2      # set Ubuntu to WSL2
+wsl --terminate Ubuntu          # stop Ubuntu session
+wsl --unregister Ubuntu         # remove Ubuntu
+sudo apt install <package>      # install software
+ls -la                          # list files with details
+pwd                             # show current directory
+top / htop                      # view running processes
+df -h                           # disk usage
+free -m                         # memory usage
+uname -r                        # kernel version
+cat /etc/os-release             # OS info
+nano <file>                     # edit file
+ping google.com                 # test network
+history                         # recent commands
+grep <text> <file>              # search text
+chmod +x <file>                 # make executable
+tar -czvf file.tar.gz folder/    # compress
+scp file user@host:/path         # copy file over SSH
+exit                            # close WSL session
+        </code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compare -->
+    <section class="project-section" id="compare">
+      <h2>🔍 WSL2 Ubuntu vs Full Ubuntu Desktop</h2>
+      <ul class="clean">
+        <li><strong>WSL2 Ubuntu</strong> — lightweight, CLI-first, great for development and automation tasks. GUI possible via WSLg.</li>
+        <li><strong>Full Ubuntu Desktop</strong> — full desktop experience, needs separate boot or a VM like VirtualBox/VMware.</li>
+      </ul>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="project-section" id="conclusion">
+      <h2>🎯 Wrap up</h2>
+      <p>WSL2 + Ubuntu gives you a fast, developer-friendly Linux environment on Windows. It’s ideal for Ansible labs, Docker tooling, scripting, and everyday development. Keep your kernel up-to-date and use host mapping or dynamic inventory to handle IP changes.</p>
+      <p class="muted">Replace the placeholder images/GIFs with your screenshots before publishing. If you'd like, I can also create a simple dynamic-inventory script for Ansible that reads WSL and PWD nodes automatically.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Omkar Kale | Built in sleepless nights 🌙</p>
+  </footer>
+
+  <!-- Copy scripts -->
+  <script>
+    // Copy for individual command blocks (button inside .cmd)
+  function copyCommand(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text)
+    }
+
+    // Copy for cmd-list "Copy list" button
+    function copyBlock(btn){
+      const container = btn.closest('.cmd-list');
+      const text = container.querySelector('pre').innerText.trim();
+      navigator.clipboard.writeText(text).then(()=> {
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(()=> btn.textContent = old, 1500);
+      }).catch(()=> alert('Copy failed — select and copy manually.'));
+    }
+  </script>
+</body>
+</html>
